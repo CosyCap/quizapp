@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <section class="about_section layout_padding long_section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="detail-box">
+            <h2 class="text-center">{{ lesson.title }}</h2>
+            <p class="text-center">{{ lesson.lesson|safe }}</p>
+            <div class="text-center">
+              <a href="{% url 'tests:home' %}quiz/?category={{ lesson.title }}">Тест по {{ lesson.title }}</a>
+            </div>
+            <div style="margin-top: 20px;"></div>
+            {% if lesson.link %}
+              <div class="text-center">
+                <!-- Вставляем HTML-тег <iframe> с ссылкой из поля lesson.link -->
+                <iframe src="{{ lesson.link }}" width="500" height="380" frameborder="0" allowfullscreen></iframe>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

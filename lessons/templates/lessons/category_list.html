@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="furniture_section layout_padding">
+    <div class="container">
+        <div class="heading_container">
+            <h2>
+                Заголовок про уроки(SEO)
+            </h2>
+            <p>
+                Описание для поисковика
+            </p>
+        </div>
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-md-6 col-lg-4">
+                <div class="box">
+                    <div class="img-box">
+                        <img src="{{ category.image.url }}" alt="{{ category.lesson_name }}">
+                    </div>
+                    <div class="detail-box">
+                        <h5>{{ category.lesson_name }}</h5>
+                        <p>{{ category.min_description }}</p>
+                        <a href="{% url 'lessons:lesson' lesson_slug=category.slug %}">Go to Lesson</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}
